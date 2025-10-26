@@ -1,4 +1,4 @@
-<!doctype html>
+<!doctype html> 
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
@@ -79,13 +79,15 @@
     }
     @media (max-width: 600px) {
       .card {
-        padding: 20px;
+        padding: 16px;
       }
       h1 {
-        font-size: 22px;
+        font-size: 26px; /* 手机上仍然比署名大 */
       }
+      .signature { margin-top: 20px; font-weight: 700; color: #333; font-size: 14px; }
+      .small-note { font-size: 11px; }
     }
-  
+
     /* 新增对齐样式：用于标签-内容行 */
     .info-row{display:flex;gap:16px;align-items:flex-start;margin:8px 0;}
     .info-label{width:110px;min-width:90px;font-weight:600;color:#333;flex-shrink:0;padding:0;}
@@ -95,8 +97,8 @@
 <body>
   <div class="container">
     <div class="card" role="article" aria-labelledby="title">
-      <h1 id="title">您的反馈已更新 🎉</h1>
-      <p>我们已更新处理结果，以下是反馈详情：</p>
+      <h1 id="title">您的反馈已完成 🎉</h1>
+      <p>我们已更新相关回复，以下是反馈详情：</p>
 
       <!-- 反馈内容：使用 feedback-body 包裹以支持超长文本滚动 -->
       <!-- 信息行：标签 + 内容，确保垂直对齐 -->
@@ -116,17 +118,20 @@
       </div>
 
 <div class="highlight info-row">
-        <div class="info-label">处理结果：{{1.properties_value.`处理结果`[].text.content}} </div>
-        <div class="info-value"></div>
+        <div class="info-label">处理结果：</div>
+        <div class="info-value"> {{1.properties_value.`处理结果`[].text.content}} </div>
       </div>
 
 <div class="highlight info-row">
-        <div class="info-label">办结日期：{{1.properties_value.`办结时间`.start}} </div>
-        <div class="info-value"></div>
+        <div class="info-label">办结日期：</div>
+        <div class="info-value"> {{1.properties_value.`办结时间`.start}} </div>
       </div>
 
       <!-- 底部操作按钮：全宽，点击打开 quanyi.cyg.world -->
       <a class="btn" href="https://quanyi.softr.app" target="_blank" rel="noopener noreferrer">更多权益反馈</a>
+
+      <!-- 最小改动：修正文案并加内联样式以保证显示一致性 -->
+      <div class="signature" style="display:block;margin-top:20px;font-weight:700;color:#333;font-size:14px;">华东理工大学校权益部</div>
 
       <div class="footer">
         自动邮件，由机动学院权益部提供技术支持。
