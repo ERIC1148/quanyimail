@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>反馈确认</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background: #f5f5f7;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        color: #1d1d1f;
+      }
+      .container {
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 0 20px;
+      }
+      .card {
+        background: #fff;
+        border-radius: 18px;
+        padding: 32px;
+        /* 关键：将内容左对齐 */
+        text-align: left;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      }
+      h1 {
+        font-size: 28px;
+        font-weight: 600;
+        margin: 0 0 16px;
+        /* 保持标题左对齐 */
+        text-align: left;
+      }
+      p {
+        font-size: 16px;
+        line-height: 1.6;
+        margin: 0 0 24px;
+        color: #515154;
+        text-align: left;
+      }
+      .highlight {
+        background: #f0f0f5;
+        border-radius: 12px;
+        padding: 12px;
+        margin: 8px 0;
+        font-size: 15px;
+        /* 使长文本能够换行并保留必要的空白 */
+        white-space: pre-wrap;       /* 保留换行并允许换行 */
+        word-break: break-word;     /* 长单词或无空格文本换行 */
+        overflow-wrap: anywhere;    /* 更激进的换行策略，避免溢出 */
+      }
+      /* 针对可能非常长的反馈内容，设置滚动容器 */
+      .feedback-body {
+        max-height: 260px; /* 可根据需要调整高度 */
+        overflow: auto;
+        padding-right: 8px; /* 避免内容贴边被遮挡 */
+      }
+      .btn {
+        display: block;
+        background: #0071e3;
+        color: #fff;
+        text-decoration: none;
+        font-size: 17px;
+        font-weight: 500;
+        padding: 14px 18px;
+        border-radius: 12px;
+        margin-top: 20px;
+        text-align: center;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .footer {
+        font-size: 14px;
+        color: #86868b;
+        margin-top: 24px;
+        line-height: 1.6;
+        text-align: left;
+      }
+      @media (max-width: 600px) {
+        .card {
+          padding: 20px;
+        }
+        h1 {
+          font-size: 22px;
+        }
+      }
+
+      /* 新增对齐样式：用于标签-内容行 */
+      .info-row{display:flex;gap:16px;align-items:flex-start;margin:8px 0;}
+      .info-label{width:110px;min-width:90px;font-weight:600;color:#333;flex-shrink:0;padding:0;}
+      .info-value{flex:1;}
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="card" role="article" aria-labelledby="title">
+        <h1 id="title">您的反馈已更新 🎉</h1>
+        <p>我们已更新相关回复，以下是反馈详情：</p>
+
+        <!-- 反馈内容：使用 feedback-body 包裹以支持超长文本滚动 -->
+        <!-- 信息行：标签 + 内容，确保垂直对齐 -->
+        <div class="highlight info-row">
+          <div class="info-label">反馈内容：</div>
+          <div class="info-value feedback-body" aria-label="反馈内容">
+            {{1.properties_value.`您的反馈内容`[].text.content}}
+          </div>
+        </div>
+
+        <div class="highlight info-row">
+          <div class="info-label">反馈 ID：</div>
+          <div class="info-value">
+            #{{1.properties_value.feedbackID.number}}
+          </div>
+        </div>
+
+        <div class="highlight info-row">
+          <div class="info-label">移交部门：</div>
+          <div class="info-value">{{1.properties_value.`移交部门`.name}}</div>
+        </div>
+
+        <div class="highlight info-row">
+          <div class="info-label">处理结果：</div>
+          <div class="info-value feedback-body" aria-label="处理结果">
+            {{1.properties_value.`处理结果`[].text.content}}
+          </div>
+        </div>
+
+        <div class="highlight info-row">
+          <div class="info-label">办结日期：</div>
+          <div class="info-value feedback-body" aria-label="办结日期">
+            {{1.properties_value.`办结时间`.start}}
+          </div>
+        </div>
+
+        <!-- 底部操作按钮：全宽，点击打开 quanyi.cyg.world -->
+        <a
+          class="btn"
+          href="https://quanyi.softr.app"
+          target="_blank"
+          rel="noopener noreferrer"
+          >更多权益反馈</a
+        >
+
+        <div class="footer">
+          自动邮件，无需回复。由机械与动力工程学院权益部提供技术支持。
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
